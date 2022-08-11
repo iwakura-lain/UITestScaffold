@@ -1,0 +1,33 @@
+<autoTestUiSuite xmlns="http://www.lain.cn/suite/config">
+    <uiConfig>
+        <engine browser="chrome" maximize="true" isMobile="true" remoteAddress="http://127.0.0.1:4444/wd/hub/"/>
+        <actionAfterWaitTime time="1000" />
+    </uiConfig>
+    <uiElements>
+        <uiElement id="baidu_search_text" type="text" comment="百度搜索框" byId="kw"/>
+        <uiElement id="baidu_search_btn" type="button" comment="百度搜索按钮" byId="su"/>
+    </uiElements>
+    <uiFlows>
+        <uiFlow>
+            <author>antigenmhc</author>
+            <name>测试流程1</name>
+            <desc>测试百度搜索</desc>
+            <uiSteps>
+                <uiStep action="openPage" url="https://www.baidu.com"/>
+            </uiSteps>
+        </uiFlow>
+        <uiFlow>
+            <author>antigenmhc</author>
+            <name>测试流程2</name>
+            <desc>测试百度搜索</desc>
+            <uiSteps>
+                <uiStep action="openPage" url="https://www.baidu.com"/>
+                <uiStep action="fillValue" refId="baidu_search_text" value="selenium"/>
+                <uiStep action="click" refId="baidu_search_btn"/>
+                <uiStep action="compareValue" refId="baidu_search_text" expectValue="selenium"/>
+                <uiStep action="custom" customFunction="baiduSearch"/>
+                <uiStep action="jsInvoker" jsCode="window.scrollBy(0, 1000);" />
+            </uiSteps>
+        </uiFlow>
+    </uiFlows>
+</autoTestUiSuite>
